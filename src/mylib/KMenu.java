@@ -64,8 +64,10 @@ public class KMenu extends KContainer {
                     isClicked = false;
                 }
             }
+            for (KComponent kComponent : compoList) {
+                kComponent.processMouseEvent(e);
+            }
         }
-
     }
 
 }

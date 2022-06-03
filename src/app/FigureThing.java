@@ -1,8 +1,9 @@
 package app;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class FigureThing implements Cloneable{
+public class FigureThing implements Cloneable, Serializable {
 
     int x, y, width, height;
     Color figureColor;

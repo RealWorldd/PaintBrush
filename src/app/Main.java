@@ -2,10 +2,12 @@ package app;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.*;
+import java.util.ArrayList;
 
 import mylib.*;
 
-class PainterKFrame extends KFrame {
+class PainterKFrame extends KFrame{
 
     KMenuBar kMenuBar;
     KToolBar kToolBar;
@@ -16,7 +18,11 @@ class PainterKFrame extends KFrame {
         kMenuBar = new KMenuBar();
         KMenu file = new KMenu("File");
         KMenuItem open = new KMenuItem("open");
+        open.addKActionListener(new MenuActionListener());
+        open.setActionCommand("select_Open");
         KMenuItem save = new KMenuItem("save");
+        save.addKActionListener(new MenuActionListener());
+        save.setActionCommand("select_Save");
         file.add(open);
         file.add(save);
         kMenuBar.add(file);
@@ -117,11 +123,58 @@ class PainterKFrame extends KFrame {
         }
     }
 
+    class MenuActionListener implements KActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            KMenuItem kMenuItem = (KMenuItem) e.getSource();
+            switch (kMenuItem.getActionCommand()) {
+                case "select_Save":
+                    String outname = "mydraw.pd";
+                    try {
+                        FileOutputStream fos = new FileOutputStream(outname);
+                        BufferedOutputStream bos = new BufferedOutputStream(fos);
+                        ObjectOutputStream out = new ObjectOutputStream(bos);
+                        writeObject(out);
+                        out.close();
+                    } catch (IOException exception) {
+                        exception.printStackTrace();
+                    }
+                    break;
+                case "select_Open":
+                    String inname = "mydraw.pd";
+                    try {
+                        FileInputStream fis = new FileInputStream(inname);
+                        BufferedInputStream bis = new BufferedInputStream(fis);
+
+                        ObjectInputStream in = new ObjectInputStream(bis);
+                        readObject(in);
+                        in.close();
+                    }catch (IOException | ClassNotFoundException exception){
+                        exception.printStackTrace();
+                    }
+                    break;
+            }
+        }
+    }
+
+
     @Override
     public void paint(Graphics g) {
         for (KComponent kComponent : compoList) {
             kComponent.paint(g);
         }
+    }
+
+    @Serial
+    private void writeObject(ObjectOutputStream outputStream) throws IOException{
+        outputStream.writeObject(drawingPanel.figurelist);
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream inputStream) throws IOException, ClassNotFoundException {
+        ArrayList<FigureThing> arrayList = (ArrayList<FigureThing>) inputStream.readObject();
+        drawingPanel.figurelist.clear();
+        drawingPanel.figurelist = arrayList;
     }
 }
 

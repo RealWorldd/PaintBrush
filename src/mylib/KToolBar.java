@@ -37,7 +37,7 @@ public class KToolBar extends KContainer{
     }
 
     @Override
-    public void processMouseEvent(MouseEvent e) {
+    public void processMouseEvent(MouseEvent e)  {
         for (KComponent kComponent : compoList) {
             kComponent.processMouseEvent(e);
         }
