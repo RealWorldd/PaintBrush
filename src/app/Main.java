@@ -20,12 +20,6 @@ class PainterKFrame extends KFrame {
         file.add(open);
         file.add(save);
         kMenuBar.add(file);
-        KMenu edit = new KMenu("Edit");
-        KMenuItem undo = new KMenuItem("undo");
-        KMenuItem cut = new KMenuItem("cut");
-        edit.add(undo);
-        edit.add(cut);
-        kMenuBar.add(edit);
         add(kMenuBar); // 메뉴바 생성, 메뉴생성, 메뉴 아이템 추가
 
         kToolBar = new KToolBar();
@@ -47,6 +41,9 @@ class PainterKFrame extends KFrame {
         KButton btnCopy = new KButton("복사");
         btnCopy.addKActionListener(new MyActionListener());
         btnCopy.setActionCommand("select_Copy");//복사 버튼 추가
+        KButton btnWhite = new KButton("White");
+        btnWhite.addKActionListener(new MyActionListener());
+        btnWhite.setActionCommand("select_White");//흰색 버튼 추가
         KButton btnBlack = new KButton("Black");
         btnBlack.addKActionListener(new MyActionListener());
         btnBlack.setActionCommand("select_Black");//검은색 버튼 추가
@@ -65,6 +62,7 @@ class PainterKFrame extends KFrame {
         kToolBar.add(btnMerge);
         kToolBar.add(btnRemove);
         kToolBar.add(btnCopy);
+        kToolBar.add(btnWhite);
         kToolBar.add(btnBlack);
         kToolBar.add(btnRed);
         kToolBar.add(btnBlue);
@@ -99,6 +97,9 @@ class PainterKFrame extends KFrame {
                     break;
                 case "select_Copy":
                     drawingPanel.setFiguretype(5);
+                    break;
+                case "select_White":
+                    drawingPanel.setFigureColor(Color.WHITE);
                     break;
                 case "select_Black":
                     drawingPanel.setFigureColor(Color.BLACK);

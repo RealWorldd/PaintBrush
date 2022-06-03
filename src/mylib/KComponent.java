@@ -2,31 +2,38 @@ package mylib;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
-public class KComponent{
+public class KComponent {
 	protected int x, y, width, height;
 	protected boolean visible;
 	protected String text = null;
 	protected KMouseListener kMouseListener;
 
-	public KComponent() {}
+	ArrayList<KMouseListener> kMouseListeners = new ArrayList<>();
 
-	public KComponent(String text){
+	public KComponent() {
+	}
+
+	public KComponent(String text) {
 		this.text = text;
 	}
 
 	public void addKMouseListener(KMouseListener l) {
 		kMouseListener = l;
+		kMouseListeners.add(l);
 	}
 
-	public void draw(Graphics g, int x_, int y_) {}
+	public void draw(Graphics g, int x_, int y_) {
+	}
 
 	public boolean isContain(int x_, int y_) {
 		return x <= x_ && x_ <= (x + width) && y <= y_ && y_ <= (y + height);
 	}
 
-	public void paint(Graphics g) {}
+	public void paint(Graphics g) {
+	}
 
 	public void processMouseEvent(MouseEvent e) {
 		KMouseListener listener = kMouseListener;

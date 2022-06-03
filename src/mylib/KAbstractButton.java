@@ -3,11 +3,14 @@ package mylib;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public abstract class KAbstractButton extends KComponent{
 
     protected KActionListener kActionListener = null;
     protected String actionCommand = null;
+
+    ArrayList<KActionListener> kActionListeners = new ArrayList<>();
 
     public KAbstractButton() {}
 
@@ -17,6 +20,7 @@ public abstract class KAbstractButton extends KComponent{
 
     public void addKActionListener(KActionListener l){
         kActionListener = l;
+        kActionListeners.add(l);
     }
 
     public void setActionCommand(String actionCommand){

@@ -1,7 +1,6 @@
 package app;
 
 import mylib.KAbstractButton;
-import mylib.KCheckBox;
 import mylib.KMouseListener;
 import mylib.KPanel;
 
