@@ -27,10 +27,14 @@ public class KCheckBox extends KAbstractButton {
         y = y_;
         if (selected) {
             g.setColor(Color.GREEN);
-            g.fillRect(x_, y_, width, height);
+            g.fillRoundRect(x_, y_, width, height, 20, 20);
+            g.setColor(Color.WHITE);
+            g.drawString("Fill", x+3, y+34);
         } else {
             g.setColor(Color.GRAY);
-            g.fillRect(x_, y_, width, height);
+            g.fillRoundRect(x_, y_, width, height, 20, 20);
+            g.setColor(Color.WHITE);
+            g.drawString("Unfill", x+3, y+34);
         }
 
     }

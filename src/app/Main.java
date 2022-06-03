@@ -72,6 +72,7 @@ class PainterKFrame extends KFrame {
         add(kToolBar);//툴바 생성, 버튼 추가
 
         drawingPanel = new DrawingPanel();
+        drawingPanel.kCheckBox = btnfill;
         drawingPanel.setBounds(42, 61, 4096, 4096);
         add(drawingPanel);//그림판 패널 추가
     }
@@ -109,7 +110,7 @@ class PainterKFrame extends KFrame {
                     drawingPanel.setFigureColor(Color.BLUE);
                     break;
                 case "select_Fill":
-                    kButton.setSelected(!kButton.getSelected());
+                    drawingPanel.setCheckBox(kButton);
                     break;
             }
         }

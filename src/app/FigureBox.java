@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class FigureBox extends FigureThing implements Cloneable{
-    public FigureBox(int x, int y, int width, int height, Color figureColor) {
-        super(x, y, width, height, figureColor);
+    public FigureBox(int x, int y, int width, int height, Color figureColor, boolean fill) {
+        super(x, y, width, height, figureColor, fill);
     }
 
     ArrayList<FigureThing> figurebox = new ArrayList<>();

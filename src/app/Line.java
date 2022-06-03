@@ -3,8 +3,8 @@ package app;
 import java.awt.*;
 
 public class Line extends Figure {
-    public Line(int x, int y, int width, int height, Color figureColor) {
-        super(x, y, width, height, figureColor);
+    public Line(int x, int y, int width, int height, Color figureColor, boolean fill) {
+        super(x, y, width, height, figureColor, fill);
     }
 
     @Override

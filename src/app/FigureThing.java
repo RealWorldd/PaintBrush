@@ -6,13 +6,15 @@ public class FigureThing implements Cloneable{
 
     int x, y, width, height;
     Color figureColor;
+    boolean fill;
 
-    public FigureThing(int x, int y, int width, int height, Color figureColor) {
+    public FigureThing(int x, int y, int width, int height, Color figureColor, boolean fill) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.figureColor = figureColor;
+        this.fill = fill;
     }
 
     public boolean contain(int x_, int y_) {

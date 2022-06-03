@@ -1,5 +1,7 @@
 package app;
 
+import mylib.KAbstractButton;
+import mylib.KCheckBox;
 import mylib.KMouseListener;
 import mylib.KPanel;
 
@@ -12,9 +14,10 @@ public class DrawingPanel extends KPanel {
 
     int figuretype = 0;
     int drawX, drawY, drawWidth, drawHeight;
+    KAbstractButton kCheckBox;
     boolean figurePressed = false;
     boolean isInside;
-    Color figureColor = Color.BLACK;
+    Color figureColor = Color.WHITE;
 
     ArrayList<FigureThing> figurelist = new ArrayList<>();
 
@@ -36,6 +39,9 @@ public class DrawingPanel extends KPanel {
 
         @Override
         public void mouseReleased(MouseEvent e) {
+            if (kCheckBox.isContain(e.getX(), e.getY())) {
+                paintCheckBox(e);
+            }
             if (!isContain(e.getX(), e.getY()) || !isInside) {//커서가 패널 안에 없을 때 종료
                 isInside = true;
                 return;
@@ -70,7 +76,7 @@ public class DrawingPanel extends KPanel {
                 int count = 0;
                 drawWidth = Math.abs(e.getX() - drawX);
                 drawHeight = Math.abs(e.getY() - drawY);
-                FigureBox figureBox = new FigureBox(drawX, drawY, drawWidth, drawHeight, Color.LIGHT_GRAY);
+                FigureBox figureBox = new FigureBox(drawX, drawY, drawWidth, drawHeight, Color.DARK_GRAY, false);
                 for (int i = 0; i < figurelist.size(); i++) {
                     if (figurelist.get(i).inside(drawX, drawY, drawWidth, drawHeight)) {
                         figureBox.add(figurelist.get(i));
@@ -119,9 +125,9 @@ public class DrawingPanel extends KPanel {
                 drawWidth = e.getX() - drawX;
                 drawHeight = e.getY() - drawY;
                 if (figuretype == 2) {
-                    addFigure(drawX, drawY, drawWidth, drawHeight, figureColor);
+                    addFigure(drawX, drawY, drawWidth, drawHeight, figureColor, kCheckBox.getSelected());
                 } else {
-                    addFigure(minx, miny, drawWidth, drawHeight, figureColor);
+                    addFigure(minx, miny, drawWidth, drawHeight, figureColor, kCheckBox.getSelected());
                 }
                 e.getComponent().repaint();
             }
@@ -133,16 +139,16 @@ public class DrawingPanel extends KPanel {
         }
     }
 
-    public void addFigure(int a, int b, int c, int d, Color color) {
+    public void addFigure(int a, int b, int c, int d, Color color, boolean fill) {
         switch (figuretype) {
             case 0:
-                figurelist.add(new Rectangle(a, b, Math.abs(c), Math.abs(d), color));
+                figurelist.add(new Rectangle(a, b, Math.abs(c), Math.abs(d), color, kCheckBox.getSelected()));
                 break;
             case 1:
-                figurelist.add(new Oval(a, b, Math.abs(c), Math.abs(d), color));
+                figurelist.add(new Oval(a, b, Math.abs(c), Math.abs(d), color, kCheckBox.getSelected()));
                 break;
             case 2:
-                figurelist.add(new Line(a, b, c, d, color));
+                figurelist.add(new Line(a, b, c, d, color, false));
                 break;
             default:
                 break;
@@ -164,6 +170,15 @@ public class DrawingPanel extends KPanel {
 
     public void setFigureColor(Color figureColor) {
         this.figureColor = figureColor;
+    }
+
+    public void setCheckBox(KAbstractButton kCheckBox) {
+        this.kCheckBox = kCheckBox;
+        kCheckBox.setSelected(!kCheckBox.getSelected());
+    }
+
+    public void paintCheckBox(MouseEvent e) {
+        e.getComponent().repaint();
     }
 
     @Override

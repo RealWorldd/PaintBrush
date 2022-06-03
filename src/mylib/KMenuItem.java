@@ -17,7 +17,13 @@ public class KMenuItem extends KAbstractButton{
 
 	@Override
 	public void draw(Graphics g, int x_, int y_) {
-		g.clearRect(x_, y_, width, height);
-		g.drawString(text, x_+2, y_+17);
+		x = x_;
+		y = y_;
+		g.setColor(new Color(60, 63, 65));
+		g.fillRect(x, y, width, height);
+		g.setColor(Color.LIGHT_GRAY);
+		g.drawRect(x, y, width, height);
+		g.setColor(Color.WHITE);
+		g.drawString(text, x+2, y+17);
 	}
 }

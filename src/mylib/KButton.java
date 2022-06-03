@@ -20,6 +20,7 @@ public class KButton extends KAbstractButton {
     public void draw(Graphics g, int x_, int y_) {
         x = x_;
         y = y_;
+        g.setColor(Color.WHITE);
         g.drawRect(x, y, width, height);
         g.drawString(text, x+2, y+17);
     }

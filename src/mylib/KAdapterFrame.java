@@ -1,5 +1,7 @@
 package mylib;
 
+import org.w3c.dom.css.RGBColor;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
@@ -12,7 +14,7 @@ class KAdapterFrame extends JFrame{
 	KFrame myFrame = null;
 	public KAdapterFrame() {
 		enableEvents(AWTEvent.MOUSE_EVENT_MASK);
-		getContentPane().setBackground(Color.white);
+		getContentPane().setBackground(new Color(43, 43, 43));
 	}
 
 	public void setKFrame(KFrame k) {

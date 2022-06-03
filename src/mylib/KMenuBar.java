@@ -27,7 +27,8 @@ public class KMenuBar extends KContainer{
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawRect(x, y, width , height);
+		g.setColor(new Color(60, 63, 65));
+		g.fillRect(x, y, width , height);
 		int index = 9;
 		for (KComponent kComponent : compoList) {
 			kComponent.draw(g, index, 34);

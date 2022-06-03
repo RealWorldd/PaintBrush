@@ -27,7 +27,8 @@ public class KToolBar extends KContainer{
 
     @Override
     public void paint(Graphics g) {
-        g.drawRect(x, y, width, height);
+        g.setColor(new Color(60, 63, 65));
+        g.fillRect(x, y, width, height);
         int index = 200;
         for (KComponent kComponent : compoList) {
             kComponent.draw(g, 9, index);
