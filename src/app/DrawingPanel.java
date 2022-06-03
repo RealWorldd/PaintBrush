@@ -16,6 +16,7 @@ public class DrawingPanel extends KPanel {
     KAbstractButton kCheckBox;
     boolean figurePressed = false;
     boolean isInside;
+    boolean refresh = false;
     Color figureColor = Color.WHITE;
 
     ArrayList<FigureThing> figurelist = new ArrayList<>();
@@ -38,8 +39,9 @@ public class DrawingPanel extends KPanel {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            if (kCheckBox.isContain(e.getX(), e.getY())) {
-                paintCheckBox(e);
+            if (refresh) {
+                e.getComponent().repaint();
+                refresh = false;
             }
             if (!isContain(e.getX(), e.getY()) || !isInside) {//커서가 패널 안에 없을 때 종료
                 isInside = true;
@@ -169,15 +171,6 @@ public class DrawingPanel extends KPanel {
 
     public void setFigureColor(Color figureColor) {
         this.figureColor = figureColor;
-    }
-
-    public void setCheckBox(KAbstractButton kCheckBox) {
-        this.kCheckBox = kCheckBox;
-        kCheckBox.setSelected(!kCheckBox.getSelected());
-    }
-
-    public void paintCheckBox(MouseEvent e) {
-        e.getComponent().repaint();
     }
 
     @Override

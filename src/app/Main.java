@@ -117,7 +117,8 @@ class PainterKFrame extends KFrame{
                     drawingPanel.setFigureColor(Color.BLUE);
                     break;
                 case "select_Fill":
-                    drawingPanel.setCheckBox(kButton);
+                    kButton.setSelected(!kButton.getSelected());
+                    drawingPanel.refresh = true;
                     break;
             }
         }
@@ -175,6 +176,7 @@ class PainterKFrame extends KFrame{
         ArrayList<FigureThing> arrayList = (ArrayList<FigureThing>) inputStream.readObject();
         drawingPanel.figurelist.clear();
         drawingPanel.figurelist = arrayList;
+        drawingPanel.refresh = true;
     }
 }
 
