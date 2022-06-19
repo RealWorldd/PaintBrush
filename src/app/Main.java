@@ -166,12 +166,10 @@ class PainterKFrame extends KFrame{
         }
     }
 
-    @Serial
     private void writeObject(ObjectOutputStream outputStream) throws IOException{
         outputStream.writeObject(drawingPanel.figurelist);
     }
 
-    @Serial
     private void readObject(ObjectInputStream inputStream) throws IOException, ClassNotFoundException {
         ArrayList<FigureThing> arrayList = (ArrayList<FigureThing>) inputStream.readObject();
         drawingPanel.figurelist.clear();
