@@ -1,2 +1,2 @@
 # PaintBrush
-자바로 그림판 만들기(Custom Swing Library)
+자바로 그림판 만들기(Custom Swing Library using java)
